@@ -24,7 +24,7 @@
   background-color: rgb(25, 25, 25);
   position: sticky;
   top: 0;
-  width: 100%;
+  /* width: 100%; */
   z-index: 1;
 }
 
@@ -71,6 +71,7 @@
 .nav-item {
   padding: 5px 10px 5px 10px;
   color: rgb(160, 160, 160);
+  text-decoration: none;
 }
 
 .nav-item:hover {
@@ -80,7 +81,7 @@
 
 /* ----------MainBody------------------- */
 #main-body {
-  width: 1440px;
+  width: 95vw;
   /* height: 100vh; */
   margin: auto;
   position: relative;
@@ -293,4 +294,9 @@ position: relative;
 }
 iframe{
   border-radius: 10px;
+}
+
+.movies-page{
+  /* border: 2px solid blue; */
+  height: inherit;
 }
