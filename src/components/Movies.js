@@ -2,22 +2,22 @@ import React, { useEffect, useState } from 'react';
 import MovieItem from './MovieItem';
 
 export default function Movies() {
-  const [movies, setMovies] = useState(null);
+  // const [movies, setMovies] = useState(null);
 
-  const update = async () => {
-    const url = "https://api.themoviedb.org/3/movie/top_rated?api_key=5751fdb0570f52a040bda8aa291614b9&page=2";
-    let data = await fetch(url);
-    let parseData = await data.json();
-    setMovies(parseData.results);
-  }
+  // const update = async () => {
+  //   const url = "https://api.themoviedb.org/3/movie/top_rated?api_key=5751fdb0570f52a040bda8aa291614b9&page=2";
+  //   let data = await fetch(url);
+  //   let parseData = await data.json();
+  //   setMovies(parseData.results);
+  // }
 
-  useEffect(() => {
-    update();
-  }, []);
+  // useEffect(() => {
+  //   update();
+  // }, []);
 
   return (
     <>
-      <h1 className='text-center text-light'>Top Rated Movies</h1>
+      {/* <h1 className='text-center text-light'>Top Rated Movies</h1>
       <div className='container'>
         <div className="row">
           {movies ? (
@@ -34,7 +34,7 @@ export default function Movies() {
             <p>Loading...</p>
           )}
         </div>
-      </div>
+      </div> */}
     </>
   )
 }
