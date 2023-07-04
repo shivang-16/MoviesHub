@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 export default function Navbar(props) {
   return (
    <>
@@ -9,11 +9,11 @@ export default function Navbar(props) {
       <h1>Movies<span className='hub'>Hub</span></h1>
      </div>
      <div className="nav-items-box">
-     <div className="nav-item-1 nav-item">Home</div>
-      <div className="nav-item-2 nav-item">Movies</div>
-      <div className="nav-item-3 nav-item">TV Shows</div>
-      <div className="nav-item-4 nav-item">Series</div>
-      <div className="nav-item-5 nav-item">More</div>
+      <Link className="nav-item-1 nav-item" to="/">Home</Link>
+      <Link className="nav-item-2 nav-item" to="/movies">Movies</Link>
+      <Link className="nav-item-3 nav-item" to="/tvshows">TV Shows</Link>
+      <Link className="nav-item-4 nav-item" to="/series">Series</Link>
+      <Link className="nav-item-5 nav-item" to="/more">More</Link>
      </div>
      </div>
    </nav>
