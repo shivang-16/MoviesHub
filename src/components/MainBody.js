@@ -1,18 +1,20 @@
 import React, {useEffect, useState} from 'react'
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 
-export default function MainBody() {
+export default function MainBody(props) {
     const [trending, setTrending] = useState([]);
     const [videos, setVideos] = useState([]);
     const [popular, setPopular] = useState([])
     const [series, setSeries] = useState([])
 
   const updateTrending = async () => {
+    props.setProgress(10);
     const url = "https://api.themoviedb.org/3/movie/now_playing?api_key=5751fdb0570f52a040bda8aa291614b9";
     let data = await fetch(url);
     let parseData = await data.json();
+    props.setProgress(50);
     setTrending(parseData.results);
+    props.setProgress(100);
   }
   const updateVideos = async () => {
     const url = "https://api.themoviedb.org/3/movie/335977/videos?api_key=5751fdb0570f52a040bda8aa291614b9";
@@ -31,17 +33,20 @@ export default function MainBody() {
     const url = "https://api.themoviedb.org/3/tv/airing_today?api_key=5751fdb0570f52a040bda8aa291614b9";
     let data = await fetch(url);
     let parseData = await data.json();
-    setSeries(parseData.results);
+    // setTrending(parseData.results);
+    
   }
   useEffect(() => {
     updateTrending();
     updateVideos();
     updatePopular();
-    handleClickTvSeries();
+    // handleClickTvSeries();
+    // eslint-disable-next-line
   }, []);
 
   return (
 <>
+
 <main id='main-body'>
   <div className='top-header'>
     <div className='heading'>
@@ -69,7 +74,7 @@ export default function MainBody() {
     </div>
     <div className="moive-content">
     {trending.map((element)=>{
-       return <a href={`https://www.themoviedb.org/movie/${element.id}`}>
+       return <a href={`https://www.themoviedb.org/movie/${element.id}`} key={element.id}>
         <div className="moive-card">
           <div className='card-image'>
             <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${element.poster_path}`} alt="" />
@@ -89,8 +94,8 @@ export default function MainBody() {
       </div>
       <div className="videos-content">
         {videos.map((element)=>{
-           return <div className="videos-card">
-           <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${element.key}`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+           return <div className="videos-card" key={element.id}>
+           <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${element.key}`} title="YouTube video player" frameBorder={'0'} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
            </div>
         })}
       </div>
@@ -104,12 +109,12 @@ export default function MainBody() {
         </div>
         <div className="btn2 m-btn">
           <span onClick={handleClickTvSeries}>TV Series</span>
-        </div>
+        </div>   
       </div>
     </div>
     <div className='moive-content'>
     {popular.map((element)=>{
-       return <a href={`https://www.themoviedb.org/movie/${element.id}`}>
+       return <a href={`https://www.themoviedb.org/movie/${element.id}`} key={element.id}>
        <div className="moive-card">
           <div className='card-image'>
             <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${element.poster_path}`} alt="" />
@@ -137,6 +142,7 @@ export default function MainBody() {
     </div>
    </div>
 </main>
+
 </>
   )
 }
