@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react'
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+
 
 export default function MainBody() {
     const [trending, setTrending] = useState([]);
     const [videos, setVideos] = useState([]);
     const [popular, setPopular] = useState([])
+    const [series, setSeries] = useState([])
 
   const updateTrending = async () => {
     const url = "https://api.themoviedb.org/3/movie/now_playing?api_key=5751fdb0570f52a040bda8aa291614b9";
@@ -23,10 +26,18 @@ export default function MainBody() {
     let parseData = await data.json();
     setPopular(parseData.results);
   }
+
+  const handleClickTvSeries= async()=>{
+    const url = "https://api.themoviedb.org/3/tv/airing_today?api_key=5751fdb0570f52a040bda8aa291614b9";
+    let data = await fetch(url);
+    let parseData = await data.json();
+    setSeries(parseData.results);
+  }
   useEffect(() => {
     updateTrending();
     updateVideos();
     updatePopular();
+    handleClickTvSeries();
   }, []);
 
   return (
@@ -47,18 +58,19 @@ export default function MainBody() {
   <div className='movies-card-box trending'>
     <div className='trending-header common-header'>
       <h2>Trending</h2>
-      <div className='trending-btn'>
-        <div className="btn1 tr-btn active">
+      <div className='moive-btn'>
+        <div className="btn1 m-btn active">
         <span>Today</span>
         </div>
-        <div className="btn2 tr-btn">
+        <div className="btn2 m-btn">
           <span> This Week</span>
         </div>
       </div>
     </div>
-    <div className="trending-content">
+    <div className="moive-content">
     {trending.map((element)=>{
-       return <div className="trending-card">
+       return <a href={`https://www.themoviedb.org/movie/${element.id}`}>
+        <div className="moive-card">
           <div className='card-image'>
             <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${element.poster_path}`} alt="" />
             </div>
@@ -67,6 +79,7 @@ export default function MainBody() {
             </div>
           <p className='movie-date'>{element.release_date}</p>
         </div>
+       </a>
     })}
     </div>
   </div>
@@ -85,18 +98,19 @@ export default function MainBody() {
    <div className='popular'>
    <div className='common-header'>
       <h2>Watch Popular</h2>
-      <div className='trending-btn'>
-        <div className="btn1 tr-btn active">
+      <div className='moive-btn'>
+        <div className="btn1 m-btn active">
         <span>Movie</span>
         </div>
-        <div className="btn2 tr-btn">
-          <span>TV Series</span>
+        <div className="btn2 m-btn">
+          <span onClick={handleClickTvSeries}>TV Series</span>
         </div>
       </div>
     </div>
-    <div className='trending-content'>
+    <div className='moive-content'>
     {popular.map((element)=>{
-       return <div className="trending-card">
+       return <a href={`https://www.themoviedb.org/movie/${element.id}`}>
+       <div className="moive-card">
           <div className='card-image'>
             <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${element.poster_path}`} alt="" />
             </div>
@@ -105,6 +119,20 @@ export default function MainBody() {
             </div>
           <p className='movie-date'>{element.release_date}</p>
         </div>
+        </a>
+    })}
+    {series.map((element)=>{
+       return <a href={`https://www.themoviedb.org/movie/${element.id}`}>
+       <div className="moive-card">
+          <div className='card-image'>
+            <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${element.poster_path}`} alt="" />
+            </div>
+            <div className='movie-title'>
+          {element.original_title} 
+            </div>
+          <p className='movie-date'>{element.release_date}</p>
+        </div>
+        </a>
     })}
     </div>
    </div>

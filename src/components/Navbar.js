@@ -6,7 +6,7 @@ export default function Navbar(props) {
    <nav className='navbar'>
     <div className='main-nav-box'>
      <div className="title">
-      <h1>Movies<span className='hub'>Hub</span></h1>
+      <Link to="/"><h1>Movies<span className='hub'>Hub</span></h1></Link>
      </div>
      <div className="nav-items-box">
       <Link className="nav-item-1 nav-item" to="/">Home</Link>
