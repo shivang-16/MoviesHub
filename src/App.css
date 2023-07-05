@@ -32,7 +32,7 @@
   position: relative;
   margin: 0px 100px 0px 100px;
   display: flex;
-  /* border: 2px solid blue; */
+
 }
 
 .title {
@@ -82,19 +82,64 @@
   color: white;
 }
 
-.dark-mode{
+.burger {
   /* border: 2px solid red; */
   position: absolute;
-  right: 0;
-  height: inherit;
+  top: 0px;
   width: 50px;
+  height: inherit;
   display: flex;
+  flex-direction: column;
+  cursor: pointer;
   align-items: center;
+  justify-content: center;
+  right: 30px;
+  display: none;
 }
-.dark-mode>button{
-  /* border: none; */
-  width: inherit;
 
+.line {
+  width: 25px;
+  height: 2.5px;
+  margin-top: 5.5px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+.BurgerClick {
+  position: absolute;
+  background-color: rgb(25, 25, 25);
+  border-bottom: 10px solid rgb(0, 0, 0);
+  height: 180px;
+  width: 100%;
+  z-index: 1;
+  display: none;
+  animation: slide 0.2s ease-in-out; /* Add animation property */
+}
+
+@keyframes slide {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 180px;
+  }
+}
+
+.burgerClick-box{
+  border-bottom: 0.1px solid rgb(59, 59, 59);
+  padding: 3px;
+  margin: 5px 40px 0px 40px;
+  /* width: 100px; */
+ 
+}
+.nav-item-burger{
+  text-decoration: none;
+  color:white;
+  font-weight: bold;
+}
+.burgerClick-box:hover{
+  background-color: black;
+  
 }
 /* ----------MainBody------------------- */
 #main-body {
@@ -356,8 +401,21 @@ justify-content: center;
   .nav-item{
     display: none;
   }
+  .title{
+    margin-left: -60px;
+  }
+  .burger{
+    display: block;
+    top: 22px;
+  }
 }
 @media screen and (max-width:565px) {
+  .burger{
+    right: 8px;
+  }
+  .title{
+    margin-left: -80px;
+  }
   .heading{
     font-size: 18px;
   }
@@ -415,5 +473,8 @@ justify-content: center;
       width: 280px;
       /* overflow: hidden; */
     }
- 
+  
+    .common-heading{
+      font-size: 13px;
+    }
 }
