@@ -5,6 +5,7 @@ import Movies from './components/Movies'
 import MainBody from './components/MainBody';
 import TvShows from './components/TvShows';
 import Series from './components/Series';
+import Footer from './components/Footer';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import './App.css';
@@ -25,9 +26,9 @@ function App() {
       <Route exact path='/movies' element={ <Movies setProgress={setProgress}/>}/>
       <Route exact path='/tvshows' element={ <TvShows setProgress={setProgress}/>}/>
       <Route exact path='/series' element={ <Series setProgress={setProgress}/>}/>
-
     </Routes>
     </BrowserRouter>
+    <Footer/>
     </>
   );
 }
