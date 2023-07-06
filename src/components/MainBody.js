@@ -13,7 +13,7 @@ export default function MainBody(props) {
 
   const updateTrending = async () => {
     props.setProgress(10);
-    const url = "https://api.themoviedb.org/3/trending/movie/day?api_key=5751fdb0570f52a040bda8aa291614b9";
+    const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${props.TMBDApiKey}`;
     let data = await fetch(url);
     let parseData = await data.json();
     props.setProgress(50);
@@ -22,7 +22,7 @@ export default function MainBody(props) {
   };
 
   const updateVideos = async () => {
-    const url = "https://api.themoviedb.org/3/movie/335977/videos?api_key=5751fdb0570f52a040bda8aa291614b9";
+    const url = `https://api.themoviedb.org/3/movie/335977/videos?api_key=${props.TMBDApiKey}`;
     let data = await fetch(url);
     let parseData = await data.json();
     setVideos(parseData.results);
@@ -30,7 +30,7 @@ export default function MainBody(props) {
 
   const updatePopular = async () => {
     props.setProgress(10);
-    const url = "https://api.themoviedb.org/3/tv/top_rated?api_key=5751fdb0570f52a040bda8aa291614b9";
+    const url = `https://api.themoviedb.org/3/tv/top_rated?api_key=${props.TMBDApiKey}`;
     let data = await fetch(url);
     props.setProgress(50);
     let parseData = await data.json();
@@ -41,7 +41,7 @@ export default function MainBody(props) {
   const handleClickThisWeek = async () => {
     setIsThisWeekActive(true);
     props.setProgress(10);
-    const url = "https://api.themoviedb.org/3/movie/now_playing?api_key=5751fdb0570f52a040bda8aa291614b9";
+    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${props.TMBDApiKey}`;
     let data = await fetch(url);
     let parseData = await data.json();
     props.setProgress(50);
@@ -57,7 +57,7 @@ export default function MainBody(props) {
   const handleClickMovies = async () => {
     setIsMoviesActive(true);
     props.setProgress(10);
-    const url = "https://api.themoviedb.org/3/movie/upcoming?api_key=5751fdb0570f52a040bda8aa291614b9";
+    const url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${props.TMBDApiKey}`;
     let data = await fetch(url);
     props.setProgress(40);
     let parseData = await data.json();
@@ -81,7 +81,7 @@ export default function MainBody(props) {
      return;
     }
     props.setProgress(10);
-    const url = `https://www.omdbapi.com/?s=${searchKeyword}&page=1&apikey=491fd456`;
+    const url = `https://www.omdbapi.com/?s=${searchKeyword}&page=1&apikey=${props.OMBDApiKey}`;
     let data = await fetch(url);
     props.setProgress(30);
     let parseData = await data.json();

@@ -11,7 +11,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css';
 
 function App() {
-  const [progress, setProgress] = useState(0)
+  const [progress, setProgress] = useState(0);
+
+  //variables
+  let TMBDApiKey = '5751fdb0570f52a040bda8aa291614b9'
+  let OMBDApiKey = '491fd456'
  
   return (
     <>
@@ -23,10 +27,10 @@ function App() {
     
     <Navbar title="MoviesBay"/>
     <Routes>
-      <Route exact path='/' element={ <MainBody setProgress={setProgress}/>}/>
-      <Route exact path='/movies' element={ <Movies setProgress={setProgress}/>}/>
-      <Route exact path='/tvshows' element={ <TvShows setProgress={setProgress}/>}/>
-      <Route exact path='/series' element={ <Series setProgress={setProgress}/>}/>
+      <Route exact path='/' element={ <MainBody setProgress={setProgress} TMBDApiKey={TMBDApiKey} OMBDApiKey={OMBDApiKey}/>}/>
+      <Route exact path='/movies' element={ <Movies setProgress={setProgress} TMBDApiKey={TMBDApiKey}/>}/>
+      <Route exact path='/tvshows' element={ <TvShows setProgress={setProgress} TMBDApiKey={TMBDApiKey}/>}/>
+      <Route exact path='/series' element={ <Series setProgress={setProgress} TMBDApiKey={TMBDApiKey}/>}/>
     </Routes>
     </BrowserRouter>
    

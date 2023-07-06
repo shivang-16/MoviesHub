@@ -5,7 +5,7 @@ export default function Movies(props) {
 
   const updateMovies = async () => {
     props.setProgress(10);
-    const url ='https://api.themoviedb.org/3/movie/top_rated?api_key=5751fdb0570f52a040bda8aa291614b9';
+    const url =`https://api.themoviedb.org/3/movie/top_rated?api_key=${props.TMBDApiKey}`;
     props.setProgress(40);
     let data = await fetch(url);
     props.setProgress(70);
@@ -14,13 +14,13 @@ export default function Movies(props) {
     props.setProgress(100);
   };
 
-  const fetchMoreData = async() => {
-    const url =`https://api.themoviedb.org/3/movie/top_rated?api_key=5751fdb0570f52a040bda8aa291614b9`;
-    let data = await fetch(url);
-    let parseData = await data.json();
-    setMovies(parseData.results);
+  // const fetchMoreData = async() => {
+  //   const url =`https://api.themoviedb.org/3/movie/top_rated?api_key=${props.TMBDApiKey}`;
+  //   let data = await fetch(url);
+  //   let parseData = await data.json();
+  //   setMovies(parseData.results);
 
-  };
+  // };
   useEffect(() => {
     updateMovies();
   }, []);

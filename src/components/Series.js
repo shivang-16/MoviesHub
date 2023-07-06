@@ -5,7 +5,7 @@ export default function Series(props) {
 
   const updateSeries = async () => {
     props.setProgress(10);
-    const url ='https://api.themoviedb.org/3/tv/top_rated?api_key=5751fdb0570f52a040bda8aa291614b9';
+    const url =`https://api.themoviedb.org/3/tv/top_rated?api_key=${props.TMBDApiKey}`;
     props.setProgress(40);
     let data = await fetch(url);
     props.setProgress(70);
