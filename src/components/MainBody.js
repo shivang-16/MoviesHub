@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import Footer from './Footer';
 
 export default function MainBody(props) {
   const [trending, setTrending] = useState([]);
@@ -6,7 +7,9 @@ export default function MainBody(props) {
   const [popular, setPopular] = useState([]);
   const [isThisWeekActive, setIsThisWeekActive] = useState(false);
   const [isMoviesActive, setIsMoviesActive] = useState(false);
- 
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const searchResultsRef = useRef(null);
 
   const updateTrending = async () => {
     props.setProgress(10);
@@ -44,7 +47,6 @@ export default function MainBody(props) {
     props.setProgress(50);
     setTrending(parseData.results);
     props.setProgress(100);
-
   };
 
   const handleClickTop = async () => {
@@ -68,10 +70,44 @@ export default function MainBody(props) {
     updatePopular();
   };
 
+  const handleSearchInputChange = (event) => {
+    setSearchKeyword(event.target.value);
+  };
+
+  const handleSearchSubmit = async (event) => {
+    event.preventDefault();
+    if (searchKeyword.trim() === '') {
+      setSearchResults([]);
+     return;
+    }
+    props.setProgress(10);
+    const url = `https://www.omdbapi.com/?s=${searchKeyword}&page=1&apikey=491fd456`;
+    let data = await fetch(url);
+    props.setProgress(30);
+    let parseData = await data.json();
+    props.setProgress(60);
+    if (parseData.Response === "True") {
+      setSearchResults(parseData.Search);
+    } else {
+      setSearchResults([]);
+    }
+    props.setProgress(100);
+  };
+
+  const handleClickOutside = (event) => {
+    if (searchResultsRef.current && !searchResultsRef.current.contains(event.target)) {
+      setSearchResults([]);
+    }
+  };
+
   useEffect(() => {
     updateTrending();
     updateVideos();
     updatePopular();
+    window.addEventListener('click', handleClickOutside);
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
   }, []);
 
   return (
@@ -83,10 +119,32 @@ export default function MainBody(props) {
             <h3>Millions of movies, TV shows and people to discover. Explore now.</h3>
           </div>
           <div className='search-box'>
-            <form>
-              <input type="search" className='search-bar' placeholder='Search...' />
-              <input type="submit" className='submit-btn' value='Search' />
+            <form onSubmit={handleSearchSubmit}>
+              <input
+                type='search'
+                className='search-bar'
+                placeholder='Search...'
+                value={searchKeyword}
+                onChange={handleSearchInputChange}
+              />
+              <input type='submit' className='submit-btn' value='Search' />
             </form>
+            {searchResults.length > 0 && (
+              <div className='search-results' ref={searchResultsRef}>
+                {searchResults.map((element) => (
+                  <a href={`https://www.imdb.com/title/${element.imdbID}`} key={element.imdbID}>
+                    <div className='search-result-card'>
+                      <div className='search-result-image'>
+                        <img src={element.Poster} alt='' />
+                      </div>
+                      <div className='search-result-title'>{element.Title}
+                      <p className='search-result-date'>{element.Year}</p>
+                      </div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
         <div className='movies-card-box trending'>
@@ -101,17 +159,15 @@ export default function MainBody(props) {
               </div>
             </div>
           </div>
-          <div className="moive-content">
+          <div className='moive-content'>
             {trending.map((element) => {
               return (
                 <a href={`https://www.themoviedb.org/movie/${element.id}`} key={element.id}>
-                  <div className="moive-card">
+                  <div className='moive-card'>
                     <div className='card-image'>
-                      <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${element.poster_path}`} alt="" />
+                      <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${element.poster_path}`} alt='' />
                     </div>
-                    <div className='movie-title'>
-                      {element.original_title}
-                    </div>
+                    <div className='movie-title'>{element.original_title}</div>
                     <p className='movie-date'>{element.release_date}</p>
                   </div>
                 </a>
@@ -120,20 +176,20 @@ export default function MainBody(props) {
           </div>
         </div>
         <div className='videos'>
-          <div className="videos-header common-header">
+          <div className='videos-header common-header'>
             <h2>Movies Previews</h2>
           </div>
-          <div className="videos-content">
+          <div className='videos-content'>
             {videos.map((element) => {
               return (
-                <div className="videos-card" key={element.id}>
+                <div className='videos-card' key={element.id}>
                   <iframe
-                    width="100%"
-                    height="100%"
+                    width='100%'
+                    height='100%'
                     src={`https://www.youtube.com/embed/${element.key}`}
-                    title="YouTube video player"
-                    frameBorder={'0'}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    title='YouTube video player'
+                    frameBorder='0'
+                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
                     allowFullScreen
                   ></iframe>
                 </div>
@@ -157,22 +213,23 @@ export default function MainBody(props) {
             {popular.map((element) => {
               return (
                 <a href={`https://www.themoviedb.org/movie/${element.id}`} key={element.id}>
-                  <div className="moive-card">
+                  <div className='moive-card'>
                     <div className='card-image'>
-                      <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${element.poster_path}`} alt="" />
+                      <img src={`https://image.tmdb.org/t/p/w220_and_h330_face${element.poster_path}`} alt='' />
                     </div>
                     <div className='movie-title'>
-                  {isMoviesActive ? element.original_title : element.name}
-                </div>
-                <p className='movie-date'>
-                  {isMoviesActive ? element.release_date : element.first_air_date}
-                </p>
+                      {isMoviesActive ? element.original_title : element.name}
+                    </div>
+                    <p className='movie-date'>
+                      {isMoviesActive ? element.release_date : element.first_air_date}
+                    </p>
                   </div>
                 </a>
               );
             })}
           </div>
         </div>
+        <Footer/>
       </main>
     </>
   );

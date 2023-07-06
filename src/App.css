@@ -117,7 +117,7 @@
   width: 100%;
   z-index: 1;
   display: none;
-  animation: slide 0.2s ease-in-out; /* Add animation property */
+  animation: slide 0.2s ease-in-out;
 }
 
 @keyframes slide {
@@ -130,7 +130,6 @@
 }
 
 .burgerClick-box{
-  /* border-bottom: 0.1px solid rgb(197, 197, 197); */
   padding: 3px;
   margin: 5px 40px 0px 40px;
  padding: 8px;
@@ -151,10 +150,8 @@
 /* ----------MainBody------------------- */
 #main-body {
   width: 95vw;
-  /* height: 100vh; */
   margin: auto;
   position: relative;
-  /* border: 2px solid red; */
 }
 #main-body a{
   text-decoration: none;
@@ -240,6 +237,51 @@
   cursor: pointer;
 }
 
+
+
+.search-results {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 55px 0px 0px 53px;
+  position: absolute;
+  background-color: rgb(25, 25, 25);
+  height: 350px;
+  overflow-y: scroll;
+  color: white;
+  width: 88vw;
+  z-index: 1;
+}
+
+.search-result-card {
+  width: 50vw;
+ border-bottom: 1px solid rgb(134, 134, 134);
+  height: 70px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.search-result-image img {
+  width: 30px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.search-result-title {
+  font-weight: bold;
+  margin-top: 10px;
+}
+.search-result-title:hover{
+  background-image: linear-gradient(to right, rgb(173, 173, 29), #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.search-result-date {
+  color: gray;
+  margin-top: 5px;
+}
 .movies-card-box {
   height: 580px;
 }
@@ -355,11 +397,9 @@ position: relative;
 
 }
 .videos-header{
-  /* border: 2px solid blue; */
   margin-top: 0;
 }
 .videos-content{
-  /* border: 2px solid cyan; */
   height: 260px;
   overflow-x: scroll;
   white-space: nowrap;
@@ -367,7 +407,6 @@ position: relative;
 
 }
 .videos-card{
-  /* border: 2px solid red; */
   box-shadow: 0px 0px 1px white;
   border-radius: 10px;
   height: 220px;
@@ -481,6 +520,12 @@ footer {
 
 
 /*------------------ Media Queries---------------- */
+@media screen and (max-width:1300px) {
+  .search-results {
+    width: 84vw;
+  }
+}
+
 @media screen and (max-width:760px) {
   .nav-item{
     display: none;
@@ -491,7 +536,11 @@ footer {
   .burger{
     display: block;
   }
+  .search-results{
+    width: 78vw;
+  }
 }
+
 @media screen and (max-width:565px) {
   .burger{
     right: 8px;
@@ -542,19 +591,15 @@ footer {
     height: 400px;
   }
   .videos{
-    /* border: 2px solid red; */
     height: 310px;
   
     }
     .videos-content{
-      /* border: 2px solid red; */
       height: 200px;
     }
     .videos-card{
-     
       height: 150px;
       width: 280px;
-      /* overflow: hidden; */
     }
   
     .common-heading{
@@ -570,4 +615,21 @@ footer {
       height: 30px;
       width: 30px;
     }
+    .search-results{
+      width: 73vw;
+    }
+    .search-result-title{
+      font-size: 12px;
+    }
 }
+@media screen and (max-width: 450px) {
+  .search-results{
+    width: 68vw;
+  }
+}
+@media screen and (max-width: 370px) {
+  .search-results{
+    width: 65vw;
+  }
+}
+
