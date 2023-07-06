@@ -174,7 +174,7 @@
   height: 100%;
   height: 100%;
   position: absolute;
-  background-image: url("https://imgsrc.cineserie.com/2021/10/1919030.jpeg?ver=1");
+  background-image: url("./components/squidgamesimg.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   z-index: -1;
@@ -389,7 +389,7 @@ position: relative;
   width: 100%;
   height: 100%;
   position: absolute;
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwf03SCgQ08qcAJPFwmcOs4dPdXK62U_Kl0A&usqp=CAU");
+  background-image: url("./components/videobgimg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   z-index: -1;
