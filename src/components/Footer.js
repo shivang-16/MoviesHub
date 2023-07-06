@@ -20,7 +20,7 @@ export default function Footer() {
               target="_blank"
               className="myName"
             >
-            OMDB API 
+              OMDB API
             </a>{" "}
             to fetch the data
           </h3>
