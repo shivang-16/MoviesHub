@@ -2,21 +2,21 @@
 /* scroll bar design */
 ::-webkit-scrollbar {
   width: 8px;
-  height: 8px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: #bfbfbf;
   border-radius: 50px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #888;
+  background: linear-gradient(to right, rgb(120, 120, 0), #dbb20b);
   border-radius: 50px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
+  background: linear-gradient(to left, rgb(120, 120, 0), #dbb20b);
 }
 
 .navbar {
@@ -73,26 +73,28 @@
 
 .nav-item {
   padding: 5px 10px 5px 10px;
-  color: rgb(160, 160, 160);
+  color: rgb(210, 210, 210);
   text-decoration: none;
 }
 
 .nav-item:hover {
   cursor: pointer;
-  color: white;
+  background-image: linear-gradient(to right, rgb(173, 173, 29), #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+.nav-item-active{
+  background-image: linear-gradient(to right, rgb(173, 173, 29), #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .burger {
-  /* border: 2px solid red; */
   position: absolute;
-  top: 0px;
-  width: 50px;
-  height: inherit;
-  display: flex;
-  flex-direction: column;
+  top: 22px;
+  width: 25px;
+  height: 28px;
   cursor: pointer;
-  align-items: center;
-  justify-content: center;
   right: 30px;
   display: none;
 }
@@ -104,12 +106,14 @@
   background-color: #ffffff;
   border-radius: 2px;
 }
-
+.burger:hover .line{
+  background: linear-gradient(to right, rgb(120, 120, 0), #dbb20b);
+}
 .BurgerClick {
   position: absolute;
   background-color: rgb(25, 25, 25);
-  border-bottom: 10px solid rgb(0, 0, 0);
-  height: 180px;
+ border-bottom: 10px solid;
+  height: 190px;
   width: 100%;
   z-index: 1;
   display: none;
@@ -126,10 +130,10 @@
 }
 
 .burgerClick-box{
-  border-bottom: 0.1px solid rgb(59, 59, 59);
+  /* border-bottom: 0.1px solid rgb(197, 197, 197); */
   padding: 3px;
   margin: 5px 40px 0px 40px;
-  /* width: 100px; */
+ padding: 8px;
  
 }
 .nav-item-burger{
@@ -138,7 +142,10 @@
   font-weight: bold;
 }
 .burgerClick-box:hover{
-  background-color: black;
+  background-color: rgb(89, 89, 89);
+  background-image: linear-gradient(to right, rgb(173, 173, 29), #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   
 }
 /* ----------MainBody------------------- */
@@ -167,6 +174,7 @@
 .top-header::before {
   content: "";
   width: 100%;
+  height: 100%;
   height: 100%;
   position: absolute;
   background-image: url("https://imgsrc.cineserie.com/2021/10/1919030.jpeg?ver=1");
@@ -255,15 +263,18 @@
 }
 
 .m-btn {
-  width: 100px;
+  width: 90px;
   display: flex;
   border: 2px solid rgb(105, 105, 0);
   cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
 
 .active {
   background: linear-gradient(to left, rgb(120, 120, 0), #dbb20b);
   border-radius: 20px;
+  color: #fff;
 }
 
 .btn1 {
@@ -272,19 +283,14 @@
   border-right: none;
 }
 
-.btn1 > span {
-  padding-left: 20px;
-}
-
 .btn2 {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
   border-left: none;
 }
 
-.btn2 > span {
-  padding-left: 10px;
-}
+
+
 .moive-content{
  overflow-x: auto;
   white-space: nowrap;
@@ -397,6 +403,84 @@ justify-content: center;
   border-radius: 10px;
 }
 
+footer {
+  background-color: #000000;
+  color: #ffffff;
+  border-top: 5px solid rgb(111, 91, 1);
+ border-radius: 100px;
+  padding: 20px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.footer-content {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.myName {
+  background-image: linear-gradient(to right, rgb(173, 173, 29), #ffcc00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+
+.SocialMedia {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.socialBox {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.socialBox:hover{
+  transform: scale(1.2);
+}
+.linkedin {
+  background-image: url('./components/socialimg/linkedin.png');
+    background-size: 30px 30px;   background-position:  2px;
+}
+
+.twitter {
+  background-image: url('./components/socialimg/twitter.png');
+
+}
+
+
+.github {
+  background-image: url('./components/socialimg/github.png');
+  filter: invert(100%);
+  
+}
+
+.thread {
+  background-image: url('./components/socialimg/thread.png');
+  filter: invert(100%);
+  background-position: -25px ;
+}
+
+.instagram {
+  background-image: url('./components/socialimg/instagram.png');
+  background-size: 30px 30px;   background-position:  2px;
+}
+
+.footer-line {
+  margin-top: 30px;
+  border-top: 1px solid #dbb20b;
+  width: 60%;
+}
+
+
+/*------------------ Media Queries---------------- */
 @media screen and (max-width:760px) {
   .nav-item{
     display: none;
@@ -406,7 +490,6 @@ justify-content: center;
   }
   .burger{
     display: block;
-    top: 22px;
   }
 }
 @media screen and (max-width:565px) {
@@ -476,5 +559,15 @@ justify-content: center;
   
     .common-heading{
       font-size: 13px;
+    }
+    footer{
+      border-radius: 50px;
+    }
+    .footer-content h3{
+      font-size: 17px;
+    }
+    .socialBox{
+      height: 30px;
+      width: 30px;
     }
 }
