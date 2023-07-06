@@ -12,7 +12,15 @@ export default function Footer() {
               target="_blank"
               className="myName"
             >
-              TMBD API
+              TMBD
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://www.omdbapi.com/"
+              target="_blank"
+              className="myName"
+            >
+            OMDB API 
             </a>{" "}
             to fetch the data
           </h3>
