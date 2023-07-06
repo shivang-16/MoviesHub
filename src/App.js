@@ -14,7 +14,9 @@ function App() {
   const [progress, setProgress] = useState(0);
 
   //variables
-  let TMBDApiKey = '5751fdb0570f52a040bda8aa291614b9'
+  //TMDB API EXTRA=> 389a21dc68984411fc806e8822b9bc15
+  let TMBDApiKey = '389a21dc68984411fc806e8822b9bc15'
+  //OMDB API EXTRA=>
   let OMBDApiKey = '491fd456'
  
   return (
